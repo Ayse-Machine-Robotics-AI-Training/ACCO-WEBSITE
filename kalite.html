@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html id="htmlPage" lang="tr" data-bs-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>KALİTE | ACCO</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --accent:#f4b70b;
+      --muted:#111;
+    }
+
+    body{font-family:Inter, Arial, sans-serif; background:#fff; color:#111; margin:0;}
+    .container-max{max-width:1200px; margin:0 auto; padding:28px;}
+
+    /* NAVBAR */
+    .navbar{background:transparent;}
+    .navbar .logo{max-height:60px; width:auto;}
+    .nav-link{color:var(--muted); font-weight:600;}
+    .nav-link.active{color:#111;}
+
+
+
+    /* === NAVLINK ALTIN HOVER FIX === */
+.nav-link:hover,
+.nav-link:focus {
+  color:#f4b70b !important;
+}
+
+.nav-link.active:hover {
+  color:#f4b70b !important;
+}
+
+/* underline varsa altını da altın yap */
+.nav-link:hover::after {
+  width:100%;
+  background:#f4b70b;
+}
+
+/* === DROPDOWN ALTIN HOVER FIX === */
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus {
+  color:#f4b70b !important;
+  background:rgba(244,183,11,.15) !important;
+}
+
+/* === DARK MODE UYUMLU === */
+html[data-bs-theme="dark"] .nav-link:hover,
+html[data-bs-theme="dark"] .nav-link.active:hover {
+  color:#f4b70b !important;
+}
+
+html[data-bs-theme="dark"] .dropdown-menu .dropdown-item:hover {
+  color:#f4b70b !important;
+  background:rgba(244,183,11,.2) !important;
+}
+
+
+
+
+
+    /* HERO */
+    .quality-hero{
+      background-image: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.35)), url('https://picsum.photos/1600/600?random=11');
+      background-size:cover; background-position:center; color:#fff;
+      padding:80px 0;
+    }
+    .quality-hero h1{font-size:clamp(28px,4vw,44px); font-weight:700; margin-bottom:8px;}
+    .quality-hero p.lead{max-width:780px; margin:0 auto 18px; opacity:0.95;}
+
+    /* THREE COLUMNS KEY FACTS */
+    .facts .card{border:0; background:transparent;}
+    .fact-icon{width:64px; height:64px; border-radius:12px; background:rgba(0,0,0,0.06); display:flex; align-items:center; justify-content:center; font-size:24px; color:var(--accent);}
+
+    /* STANDARDS / TIMELINE */
+    .timeline{position:relative; padding-left:24px;}
+    .timeline::before{content:""; position:absolute; left:12px; top:0; bottom:0; width:3px; background:linear-gradient(#ffd27a,#f4b70b); border-radius:3px; opacity:0.25;}
+    .timeline-item{position:relative; margin-bottom:28px; padding-left:28px;}
+    .timeline-item .dot{position:absolute; left:-6px; top:6px; width:16px; height:16px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px rgba(244,183,11,0.12);}
+
+    /* GALLERY */
+    .gallery img{width:100%; height:220px; object-fit:cover; border-radius:8px;}
+
+    /* ACCORDION */
+    .accordion-button::after{transform:rotate(90deg);}
+
+    /* FOOTER */
+    footer{background:#0b1220; color:#dfe7ee; padding:28px 0; margin-top:40px;}
+
+    /* Responsive tweak */
+    @media (max-width:767px){
+      .quality-hero{padding:48px 12px;}
+      .gallery img{height:160px;}
+    }
+
+    /* ---------- DARK OVERRIDES (will be toggled by JS) ---------- */
+    html[data-bs-theme="dark"] body,
+    body.dark-mode{
+      background:#070708; color:#e6e6e6;
+    }
+    html[data-bs-theme="dark"] .nav-link,
+    body.dark-mode .nav-link{ color:#cfcfcf; }
+    html[data-bs-theme="dark"] .nav-link.active,
+    body.dark-mode .nav-link.active{ color:var(--accent); }
+    html[data-bs-theme="dark"] .quality-hero{ background-image: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.6)), url('https://picsum.photos/1600/600?random=11'); }
+    html[data-bs-theme="dark"] .card, body.dark-mode .card{ background:transparent; color:#e6e6e6; border-color:rgba(255,255,255,0.04); }
+    html[data-bs-theme="dark"] footer, body.dark-mode footer{ background:#050607; color:#cfcfcf; }
+
+
+    html[data-bs-theme="dark"] .quality-hero p.lead,
+    body.dark-mode .quality-hero p.lead {
+    color: rgba(255,255,255,0.85);
+    }
+
+html[data-bs-theme="dark"] .text-muted,
+body.dark-mode .text-muted {
+color: rgba(80, 77, 77, 0.6);
+}
+
+html[data-bs-theme="dark"] .small,
+body.dark-mode .small {
+color: rgba(87, 87, 87, 0.7);
+}
+
+html[data-bs-theme="dark"] .accordion-button,
+body.dark-mode .accordion-button {
+color: #f6f1f1;
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg shadow-sm">
+    <div class="container-fluid px-4">
+      <a class="navbar-brand d-flex align-items-center gap-2 me-auto" href="kalite.html">
+        <img id="logoDark" class="logo me-2" src="images-ayseWeb/ACCO4.png" alt="logo (dark)" style="display:none">
+      </a>
+
+      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="anasayfa.html">ANASAYFA</a></li>
+          <li class="nav-item"><a class="nav-link" href="hakkimizda.html">HAKKIMIZDA</a></li>
+          <li class="nav-item"><a class="nav-link active" href="kalite.html">KALİTE</a></li>
+           <!-- DROPDOWN --> 
+           <!--
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
+            <span>PROJELERİMİZ</span>
+          -->
+            <!-- <span class="dropdown-arrow">▾</span> -->
+             <!--
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">HAVA ARAÇLARI PROJELERİMİZ</a></li>
+            <li><a class="dropdown-item" href="#">KARA ARAÇLARI PROJELERİMİZ</a></li>
+            <li><a class="dropdown-item" href="#">DENİZ ARAÇLARI PROJELERİMİZ</a></li>
+          </ul>
+        </li>
+      
+        <li class="nav-item"><a class="nav-link" href="duyurular.html">DUYURULAR</a></li>
+        -->
+        <!--
+        <li class="nav-item"><a class="nav-link" href="duyurular.html">Referanslar</a></li>
+        <li class="nav-item"><a class="nav-link" href="duyurular.html">İnsan Kaynakları</a></li>
+        -->
+        <li class="nav-item"><a class="nav-link" href="iletisim.html">İLETİŞİM</a></li>
+
+          <!-- theme toggle -->
+          <li class="nav-item d-flex align-items-center ms-3">
+            <div class="form-check form-switch me-2">
+              <input class="form-check-input" id="checkbox" type="checkbox" />
+            </div>
+            <select id="langSelect" class="form-select form-select-sm w-auto">
+              <option value="tr">TR</option>
+              <option value="en">EN</option>
+            </select>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="quality-hero text-center">
+    <div class="container container-max">
+      <h1>KALİTE & YAZILIM ÇÖZÜMLERİ</h1>
+      <p class="lead">Kalite ve Yazılım Yaklaşımımız</p>
+    </div>
+  </section>
+
+  <!-- QUICK FACTS -->
+  <section class="py-5">
+    <div class="container container-max">
+      <div class="row g-4 facts">
+        <div class="col-md-4">
+          <div class="card p-3 text-center">
+            <div class="d-flex justify-content-center mb-3"><div class="fact-icon">ISO</div></div>
+
+
+            
+
+
+
+
+
+
+
+
+            <h5>Kalite İlkelerimiz</h5>
+            <p class="text-muted small">✔ Güvenilirlik <br>
+Sistemlerimiz sürekli ve stabil çalışacak şekilde geliştirilir.</p>
+
+<p class="text-muted small">✔ Performans <br>
+Gerçek zamanlı işlem kabiliyeti önceliklidir.</p>
+
+<p class="text-muted small">✔ Esneklik <br>
+Farklı araç ve platformlara kolay uyum sağlar.</p>
+
+<p class="text-muted small">✔ Ölçeklenebilirlik <br>
+Küçük sistemlerden büyük platformlara kadar geniş kullanım alanı</p>
+
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card p-3 text-center">
+            <div class="d-flex justify-content-center mb-3"><div class="fact-icon">QC</div></div>
+            
+
+
+            <h5>Üretim Kontrolleri & Yazılım Çözümlerimiz</h5>
+            <p class="text-muted small">🧠 Yapay Zekâ Motoru
+Gerçek zamanlı nesne algılama, takip ve karar verme sistemleri
+</p>
+<p class="text-muted small">📷 Görsel İşleme & RAG Sistemleri
+Kamera verisi ile analiz yapan ve karar süreçlerini destekleyen mimariler
+</p>
+<p class="text-muted small">🔌 SDK ve API Altyapısı
+Farklı platformlara hızlı entegrasyon sağlayan modüler yapı
+</p>
+<p class="text-muted small">⚡ Edge AI (CPU Tabanlı)
+Düşük donanım ile yüksek performans sunan optimize AI modelleri</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card p-3 text-center">
+            <div class="d-flex justify-content-center mb-3"><div class="fact-icon">LAB</div></div>
+            <h5>Test & Validasyon</h5>
+            <p class="text-muted small">ACCO olarak geliştirdiğimiz tüm yazılım çözümlerinde kalite, güvenilirlik ve sürdürülebilirlik temel önceliklerimizdir. Sistemlerimiz, 
+              gerçek zamanlı çalışacak şekilde optimize edilmekte ve farklı platformlara sorunsuz entegre edilebilecek şekilde tasarlanmaktadır.</p>
+            <h5>Geliştirme Standartlarımız</h5>
+              <p class="text-muted small">Modüler yazılım mimarisi</p>
+              <p class="text-muted small">Test edilebilir ve sürdürülebilir kod yapısı</p>
+              <p class="text-muted small">Simülasyon + gerçek sistem doğrulama</p>
+              <p class="text-muted small">Versiyon kontrol ve sürekli geliştirme (CI/CD mantığı)</p>
+          
+
+
+
+
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STANDARDS / TIMELINE 
+  <section class="py-4 bg-light">
+    <div class="container container-max">
+      <div class="row">
+        <div class="col-lg-6">
+          <h3 class="text-black">Kalite Standartlarımız</h3>
+          <p class="text-black">ISO, MIL-STD ve müşteri özel gereksinimlerine uygun süreçlerimiz bulunur.</p>
+
+          <div class="timeline mt-4">
+            <div class="timeline-item">
+              <div class="dot"></div>
+              <h6>Kalite Yönetim Sistemi</h6>
+              <p class="small text-black mb-0">ISO 9001 kapsamında sürekli eğitim, iç denetim ve iyileştirme.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="dot"></div>
+              <h6 class="text-black">Üretim Öncesi Doğrulama</h6>
+              <p class="small text-black mb-0">Pilot üretim, malzeme raporları ve süreç onayları.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="dot"></div>
+              <h6 class="text-black">Saha & Çevresel Testler</h6>
+              <p class="small text-black mb-0">IP, termal, titreşim ve RF testleri saha gereksinimlerine göre planlanır.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 text-black">
+          <h3>Belgelendirme & Raporlar</h3>
+          <p class="text-black ">Müşteriye özel test raporları, ölçüm verileri ve sertifikalar sağlanır.</p>
+
+          <div class="accordion" id="certAccordion">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="accOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                  ISO 9001:2015
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#certAccordion">
+                <div class="accordion-body small text-muted">
+                  Kalite yönetimi kapsamında süreçler, müşteri geri bildirimleri ve iç denetimler düzenli olarak yürütülür.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="accTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                  Test Raporları & Kalibrasyon
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#certAccordion">
+                <div class="accordion-body small text-muted">
+                  Cihaz kalibrasyon kayıtları, test protokolleri ve ölçüm sonuçları arşivlenir ve paylaşılır.
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  -->
+  <!-- GALLERY 
+  <section class="py-5">
+    <div class="container container-max">
+      <h3 class="mb-4">Kalite Galerisi</h3>
+      <div class="row g-3 gallery">
+        <div class="col-sm-6 col-md-4"><img src="https://picsum.photos/seed/q1/600/420" alt="q1"></div>
+        <div class="col-sm-6 col-md-4"><img src="https://picsum.photos/seed/q2/600/420" alt="q2"></div>
+        <div class="col-sm-6 col-md-4"><img src="https://picsum.photos/seed/q3/600/420" alt="q3"></div>
+        <div class="col-sm-6 col-md-4"><img src="https://picsum.photos/seed/q4/600/420" alt="q4"></div>
+        <div class="col-sm-6 col-md-4"><img src="https://picsum.photos/seed/q5/600/420" alt="q5"></div>
+        <div class="col-sm-6 col-md-4"><img src="https://picsum.photos/seed/q6/600/420" alt="q6"></div>
+      </div>
+    </div>
+  </section>
+  -->
+  <!-- CTA -->
+  <section class="py-5 bg-dark text-white">
+    <div class="container container-max d-flex flex-column flex-md-row align-items-center justify-content-between">
+      <div>
+        <h4 class="mb-1">Hayalini kurduğunuz yapay zeka destekli projeleriniz mi var?</h4>
+        <p class="mb-0 text-muted">Standartlara uygun test & ürün talepleriniz için bizimle iletişime geçebilirsiniz.</p>
+      </div>
+      <a href="iletisim.html" class="btn btn-warning btn-lg mt-3 mt-md-0">İLETİŞİME GEÇİNİZ</a>
+    </div>
+    <!-- FOOTER -->
+  <footer>
+    <div class="container container-max text-center">
+      <small>© 2026 ACCO — Tüm hakları saklıdır.</small>
+    </div>
+  </footer>
+  </section>
+
+  
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Page JS: dark-mode, lang, logo swap -->
+  <script>
+    document.addEventListener('DOMContentLoaded', ()=> {
+      const html = document.getElementById('htmlPage');
+      const checkbox = document.getElementById('checkbox');
+      const logoLight = document.getElementById('logoLight');
+      const logoDark = document.getElementById('logoDark');
+
+      // restore theme
+      const saved = localStorage.getItem('cencsan-theme');
+      if(saved === 'dark'){
+        checkbox.checked = true;
+        html.setAttribute('data-bs-theme','dark');
+        document.body.classList.add('dark-mode');
+        if(logoLight) logoLight.style.display='none';
+        if(logoDark) logoDark.style.display='inline';
+      }
+
+      checkbox && checkbox.addEventListener('change', ()=>{
+        const dark = checkbox.checked;
+        html.setAttribute('data-bs-theme', dark ? 'dark' : 'light');
+        document.body.classList.toggle('dark-mode', dark);
+        localStorage.setItem('cencsan-theme', dark ? 'dark' : 'light');
+        if(logoLight) logoLight.style.display = dark ? 'none' : 'inline';
+        if(logoDark) logoDark.style.display = dark ? 'inline' : 'none';
+      });
+
+      // language quick swap (simple)
+      const langSelect = document.getElementById('langSelect');
+      const mapTr = {
+        'ANASAYFA':'ANASAYFA','KURUMSAL':'KURUMSAL','Kalite Yönetimimiz':'Kalite Yönetimimiz',
+        'Kalite Galerisi':'Kalite Galerisi','İLETİŞİME GEÇ':'İLETİŞİME GEÇ'
+      };
+      const mapEn = {
+        'ANASAYFA':'HOME','KURUMSAL':'COMPANY','Kalite Yönetimimiz':'Quality Management',
+        'Kalite Galerisi':'Quality Gallery','İLETİŞİME GEÇ':'CONTACT US'
+      };
+      langSelect && langSelect.addEventListener('change', ()=>{
+        const isEn = langSelect.value === 'en';
+        // small quick mappings for visible text
+        document.querySelectorAll('.quality-hero h1').forEach(el=> el.textContent = isEn ? mapEn['Kalite Yönetimimiz'] : mapTr['Kalite Yönetimimiz']);
+        document.querySelectorAll('section.py-5 h3').forEach((el,i)=> {
+          if(i===0) el.textContent = isEn ? mapEn['Kalite Galerisi'] : mapTr['Kalite Galerisi'];
+        });
+        document.querySelectorAll('.btn').forEach(btn=>{
+          if(btn.textContent.trim().includes('İLETİŞİME')) btn.textContent = isEn ? mapEn['İLETİŞİME GEÇ'] : mapTr['İLETİŞİME GEÇ'];
+        });
+        // nav
+        document.querySelectorAll('.nav-link')[0].textContent = isEn ? 'HOME' : 'ANASAYFA';
+        document.querySelectorAll('.nav-link')[1].textContent = isEn ? 'ABOUT' : 'Hakkımızda';
+        document.querySelectorAll('.nav-link')[2].textContent = isEn ? 'QUALITY' : 'Kalite';
+      });
+
+    });
+  </script>
+
+</body>
+</html>
